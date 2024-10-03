@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Management</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Product List</h1>
+        <table class="table" id="product-table">
+            <thead>
+                <tr>
+                    <th>Product Code</th>
+                    <th>Product Name</th>
+                    <th>Product Date</th>
+                    <th>Origin Price</th>
+                    <th>Quantity</th>
+                    <th>Store Code</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+
+        <h2>Add New Product</h2>
+        <form id="product-form">
+            <div class="mb-3">
+                <label for="ProductCode" class="form-label">Product Code</label>
+                <input type="text" id="ProductCode" class="form-control" required>
+            </div>
+            <div class="mb-3">
+                <label for="ProductName" class="form-label">Product Name</label>
+                <input type="text" id="ProductName" class="form-control" required>
+            </div>
+            <div class="mb-3">
+                <label for="ProductDate" class="form-label">Product Date</label>
+                <input type="date" id="ProductDate" class="form-control" required>
+            </div>
+            <div class="mb-3">
+                <label for="ProductOriginPrice" class="form-label">Origin Price</label>
+                <input type="number" id="ProductOriginPrice" class="form-control" required>
+            </div>
+            <div class="mb-3">
+                <label for="Quantity" class="form-label">Quantity</label>
+                <input type="number" id="Quantity" class="form-control" required>
+            </div>
+            <div class="mb-3">
+                <label for="ProductStoreCode" class="form-label">Store Code</label>
+                <input type="text" id="ProductStoreCode" class="form-control" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Add Product</button>
+        </form>
+    </div>
+
+    <script src="js/main.js"></script>
+</body>
+</html>

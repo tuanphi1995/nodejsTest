@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product List</title>
+    <!-- Bootstrap CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="#">Product Management</a>
+    </nav>
+    <div class="container">
+        <h1>Product List</h1>
+
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Product Code</th>
+                    <th>Product Name</th>
+                    <th>Product Date</th>
+                    <th>Origin Price</th>
+                    <th>Quantity</th>
+                    <th>Store Code</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% products.forEach(product => { %>
+                    <tr>
+                        <td><%= product.ProductCode %></td>
+                        <td><%= product.ProductName %></td>
+                        <td><%= product.ProductDate.toISOString().split('T')[0] %></td>
+                        <td><%= product.ProductOriginPrice.toLocaleString() %></td>
+                        <td><%= product.Quantity %></td>
+                        <td><%= product.ProductStoreCode %></td>
+                        <td>
+                            <form action="/products/delete/<%= product._id %>" method="POST">
+                                <button type="submit" class="btn btn-danger">Delete</button>
+                            </form>
+                        </td>
+                    </tr>
+                <% }) %>
+            </tbody>
+        </table>
+
+        <h2>Add New Product</h2>
+        <form action="/products/add" method="POST">
+            <div class="mb-3">
+                <label for="ProductCode" class="form-label">Product Code</label>
+                <input type="text" name="ProductCode" class="form-control" required>
+            </div>
+            <div class="mb-3">
+                <label for="ProductName" class="form-label">Product Name</label>
+                <input type="text" name="ProductName" class="form-control" required>
+            </div>
+            <div class="mb-3">
+                <label for="ProductDate" class="form-label">Product Date</label>
+                <input type="date" name="ProductDate" class="form-control" required>
+            </div>
+            <div class="mb-3">
+                <label for="ProductOriginPrice" class="form-label">Origin Price</label>
+                <input type="number" name="ProductOriginPrice" class="form-control" required>
+            </div>
+            <div class="mb-3">
+                <label for="Quantity" class="form-label">Quantity</label>
+                <input type="number" name="Quantity" class="form-control" required>
+            </div>
+            <div class="mb-3">
+                <label for="ProductStoreCode" class="form-label">Store Code</label>
+                <input type="text" name="ProductStoreCode" class="form-control" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Add Product</button>
+        </form>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="/js/main.js"></script>
+</body>
+</html>
