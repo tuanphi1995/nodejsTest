@@ -10,6 +10,23 @@
 <body>
     <div class="container">
         <h1>Product List</h1>
+
+        <!-- Dropdown để chọn sắp xếp -->
+        <div class="row mb-4">
+            <div class="col-md-6">
+                <select id="sortBy" class="form-select">
+                    <option value="ProductStoreCode">Sort by Store Code</option>
+                    <option value="ProductOriginPrice">Sort by Origin Price</option>
+                </select>
+            </div>
+            <div class="col-md-6">
+                <select id="order" class="form-select">
+                    <option value="asc">Ascending</option>
+                    <option value="desc">Descending</option>
+                </select>
+            </div>
+        </div>
+
         <table class="table" id="product-table">
             <thead>
                 <tr>

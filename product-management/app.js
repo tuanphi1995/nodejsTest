@@ -15,10 +15,15 @@ mongoose.connect(process.env.MONGO_URI)
 app.use(express.json());
 app.use(express.static(path.join(__dirname, 'public')));
 
-// API lấy danh sách sản phẩm
+// API lấy danh sách sản phẩm với sắp xếp
 app.get('/api/products', async (req, res) => {
+    const { sortBy, order } = req.query; // Nhận tham số sắp xếp
     try {
-        const products = await Product.find();
+        let sortOptions = {};
+        if (sortBy && order) {
+            sortOptions[sortBy] = order === 'desc' ? -1 : 1; // Thiết lập sắp xếp
+        }
+        const products = await Product.find().sort(sortOptions);
         res.json(products);
     } catch (err) {
         res.status(500).json({ error: err.message });

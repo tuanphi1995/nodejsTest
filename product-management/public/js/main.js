@@ -1,10 +1,15 @@
 document.addEventListener('DOMContentLoaded', function () {
     const productTable = document.querySelector('#product-table tbody');
     const productForm = document.querySelector('#product-form');
+    const sortBySelect = document.querySelector('#sortBy');
+    const orderSelect = document.querySelector('#order');
 
-    // Load sản phẩm từ API
+    // Load sản phẩm từ API với sắp xếp
     async function loadProducts() {
-        const response = await fetch('/api/products');
+        const sortBy = sortBySelect.value;
+        const order = orderSelect.value;
+
+        const response = await fetch(`/api/products?sortBy=${sortBy}&order=${order}`);
         const products = await response.json();
 
         productTable.innerHTML = ''; // Xóa nội dung cũ
@@ -32,6 +37,10 @@ document.addEventListener('DOMContentLoaded', function () {
             });
         });
     }
+
+    // Thêm sự kiện thay đổi cho dropdown sắp xếp
+    sortBySelect.addEventListener('change', loadProducts);
+    orderSelect.addEventListener('change', loadProducts);
 
     // Thêm sản phẩm mới
     productForm.addEventListener('submit', async function (e) {
